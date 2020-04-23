@@ -1,0 +1,16 @@
+{
+  "name": "nebot",
+  "version": "1.0.0",
+  "description": "starborne discord alliance bot",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "[]\u001b[DNE\u001b[C\u001b[D] Menschoid",
+  "license": "ISC",
+  "dependencies": {
+    "discord.js": "^12.2.0",
+    "sequelize": "^5.21.6",
+    "sqlite3": "^4.1.1"
+  }
+}
