@@ -1,5 +1,5 @@
 module.exports = {
-	name: 'edit_station',
+	name: 'station_update',
 	description: 'This command allows a user to edit a station he entered into the database.',
 	args:true,
 	usage: '<x-coordinate> <y-coordinate> <station-name [optional, no whitespaces]> <station-role [optional, no whitespaces]>',

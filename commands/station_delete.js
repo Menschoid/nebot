@@ -1,5 +1,5 @@
 module.exports = {
-	name: 'delete_station',
+	name: 'station_delete',
 	description: 'This command allows a user to delete a station he entered into the database.',
 	args:true,
 	usage: '<x-coordinate> <y-coordinate>',

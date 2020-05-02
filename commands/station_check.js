@@ -1,5 +1,5 @@
 module.exports = {
-	name: 'check_claim',
+	name: 'station_check',
 	aliases: ['goto'],
 	description: 'This command checks if a station at the given location would overlap with one in the database.',
 	args:true,

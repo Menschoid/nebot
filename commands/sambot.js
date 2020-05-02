@@ -1,6 +1,6 @@
 module.exports = {
-	name: 'nebot',
-	aliases: ['help','nebot_help'],
+	name: 'sambot',
+	aliases: ['help','sambot_help'],
 	description: 'This displays informations on how to use this bot.',
 	args:false,
 	usage: '',
@@ -20,9 +20,9 @@ module.exports = {
 		// create Message with all commands
 		const helpEmbed = new Discord.MessageEmbed()
 			.setColor('#0099ff')
-			.setTitle('NEBot commands')
+			.setTitle('SAM-Bot commands')
 			.setURL('https://discord.js.org/')
-			.setAuthor('NEBot');
+			.setAuthor('SAM-Bot');
 		// add all commands with their usage and description
 		for (const file of commandFiles) {
 			const command = require(`./${file}`);
