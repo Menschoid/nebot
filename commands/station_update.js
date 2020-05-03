@@ -42,7 +42,7 @@ module.exports = {
 		}
 		catch (e) {
 			// no station with the given coordinates found
-			return message.reply('Could find no station at ${stationCoords}.');
+			return message.reply(`Could find no station at ${stationCoords}.`);
 		}
 	},
 };

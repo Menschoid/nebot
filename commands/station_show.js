@@ -10,17 +10,27 @@ module.exports = {
 
 		// Get servername from channel name
 		let server = message.channel.name.split(/-+/).shift();
+		let userid = message.author.id;
 
 		// Load one station or all?
-		if (args[0] === 'all') {
+		if (args[0] === 'all' || args[0] === 'mine') {
 			// Load all stations on a server
 			try {
-				const allStation = await Stations.findAll({
-					where: {
-						server: server
-					}
-				});
-
+				let allStation;
+				if (args[0] === 'mine') {
+					allStation = await Stations.findAll({
+						where: {
+							server: server,
+							userid: userid
+						}
+					});
+				} else {
+					allStation = await Stations.findAll({
+						where: {
+							server: server
+						}
+					});
+				}
 
 				// Import the discord.js-pagination package
 				const paginationEmbed = require('discord.js-pagination');
@@ -30,41 +40,39 @@ module.exports = {
 				let pageTotal = Math.ceil(allStation.length/10);
 				let pageCount = 1;
 				let entryPage = 1;
-				let entryTotal = 1;
+				let entryTotal = 0;
 				let output = [];
 
-				//let page = module.exports.createNewPage(Discord, pageCount, pageTotal);
-
-				//const page = new Discord.MessageEmbed()
-				//	.setColor('#0099ff')
-				//	.setTitle(`Station list`)
-				//	.setURL('https://discord.js.org/')
-				//	.setAuthor('NEBot');
-
-				for (let i = 0; i < allStation.length; i++)  {
-					//if(entryPage === 1) {
-					//	// create page
-					//	let page = module.exports.createNewPage(Discord, pageCount, pageTotal);
-					//}
-					let page = module.exports.createNewPage(Discord, pageCount, pageTotal);
-					// create entry into page
-					page.addField( `${entryTotal}. ${allStation[i].name}: /goto ${allStation[i].coordinates}`, `Owner: ${allStation[i].username} | Role: ${allStation[i].role}`);
-					page.addField( `${entryTotal}. ${allStation[i].name}: /goto ${allStation[i].coordinates}`, `Owner: ${allStation[i].username} | Role: ${allStation[i].role}`);
-					// count up entry number and total processed entry number
-					entryPage++;
-					entryTotal++;
-
-					// Full 10 entries are one page or if the list is done
-					if (entryPage > 9 || i === allStation.length-1) {
-						//reset entries
-						entryPage = 1;
-						// push page into outputArray
-						output.push(page);
-						pageCount++;
+				// creating all the pages
+				for (let i = 0; i < pageTotal; i++) {
+					// create the page-object
+					let header = `All stations on server ${server}: ${allStation.length}`;
+					if (args[0] === 'mine') {
+						header = `My stations on server ${server}: ${allStation.length}`;
 					}
-				}
-				console.log(output);
+					let page = module.exports.createNewPage(Discord, pageCount, pageTotal, header);
 
+					// set entry-counter for the page
+					let entryPage = 1;
+
+					// set entry maximum for this page (10 or whatever is left to the end)
+					let nextMaxEntry = entryTotal+10;
+					if (nextMaxEntry > allStation.length) {
+						nextMaxEntry = allStation.length;
+					}
+					
+					// create up to 10 entries for the page
+					for (let e = entryTotal; e < nextMaxEntry; e++) {
+						let entryStation = allStation[e].dataValues;
+						page.addField( `${entryTotal+1}. ${entryStation.name}: /goto ${entryStation.coordinates}`, `Owner: ${entryStation.username} | Role: ${entryStation.role}`);
+						entryTotal++;
+						entryPage++;
+					}
+
+					// add the page to the output
+					output.push(page);
+					pageCount++;
+				} 
 				// return output as paginated message
 				paginationEmbed(message, output);
 			}
@@ -94,11 +102,11 @@ module.exports = {
 			}
 		}
 	},
-	createNewPage: (Discord, pageNo, pageTotal) => {
+	createNewPage: (Discord, pageNo, pageTotal, header) => {
 		// create Message with all commands
 		const page = new Discord.MessageEmbed()
 			.setColor('#0099ff')
-			.setTitle('Station list')
+			.setTitle(header)
 			.setURL('https://discord.js.org/')
 			.setAuthor('SAM-Bot');
 		return page;

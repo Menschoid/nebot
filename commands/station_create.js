@@ -1,5 +1,6 @@
 module.exports = {
 	name: 'station_create',
+	aliases: ['station_claim'],
 	description: 'This command saves a station into the database.',
 	args:true,
 	usage: '<x-coordinate> <y-coordinate> <station-name [optional, no whitespaces]> <station-role [optional, no whitespaces]>',

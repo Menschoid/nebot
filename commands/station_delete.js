@@ -35,7 +35,7 @@ module.exports = {
 		}
 		catch (e) {
 			// no station found for given coordinates
-			return message.reply('Could find no station at ${stationCoords}.');
+			return message.reply(`Could find no station at ${stationCoords}.`);
 		}
 	},
 };
