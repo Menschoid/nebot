@@ -2,7 +2,7 @@
 const fs = require('fs');
 
 // require sequelize
-const Sequelize = require('sequelize');
+//const Sequelize = require('sequelize');
 
 // require the discord.js module
 const Discord = require('discord.js');
@@ -14,16 +14,16 @@ const { prefix, token } = require('./config.json');
 const client = new Discord.Client();
 
 // sqlite connection
-const sequelize = new Sequelize('database', 'user', 'password', {
-	host: 'localhost',
-	dialect: 'sqlite',
-	logging: false,
-	// SQLite only
-	storage: 'database.sqlite',
-});
+//const sequelize = new Sequelize('database', 'user', 'password', {
+//	host: 'localhost',
+//	dialect: 'sqlite',
+//	logging: false,
+//	// SQLite only
+//	storage: 'database.sqlite',
+//});
 
 // db model stations
-const Stations = sequelize.define('stations', {
+/*const Stations = sequelize.define('stations', {
 	coordinates: {
 		type: Sequelize.STRING,
 		unique: true,
@@ -48,7 +48,10 @@ const Stations = sequelize.define('stations', {
 	server: Sequelize.STRING,
 	dateCreated: Sequelize.DATE,
 	dateEdited: Sequelize.DATE,
-});
+}); */
+
+const dbModels = require('./classes/dbModels.js');
+const Stations = dbModels.initStations();
 
 // collection for commands
 client.commands = new Discord.Collection();
