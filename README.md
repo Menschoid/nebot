@@ -1,4 +1,4 @@
-#SAM-BOT
+#SAM-BOT#
 A Starborne Alliance Managment helper bot for Discord. This bot allows users to claim stations by their coordinates. It also allows them to edit and delete these stations and also see if a pair of coordinates might create a conflict with the area of another station. In the future there might be additional features regarding managment of Augment-requests and spy reports.
 
 ##Features
