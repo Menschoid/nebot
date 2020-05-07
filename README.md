@@ -26,7 +26,7 @@ To specify the gameserver, you need to name the channels correctly. Every channe
 
 ### General
 
-###### !help
+##### !help
 **Description:** The help command will list all available commands and their usage.</br>
 **Aliases:** !sambot, !sambot_help</br>
 **Usage:** `!help`</br>
@@ -37,7 +37,7 @@ To specify the gameserver, you need to name the channels correctly. Every channe
 
 ### Stations
 
-###### !station_create
+#### !station_create
 **Description:** Creates a station in the database. Stations are identified by their coordinates and the server. The name and role are optional.
 
 **Aliases:** !station_claim
