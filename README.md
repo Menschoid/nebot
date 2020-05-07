@@ -27,12 +27,9 @@ To specify the gameserver, you need to name the channels correctly. Every channe
 ### General
 
 ###### !help
-**Description:** The help command will list all available commands and their usage.
-
-**Aliases:** !sambot, !sambot_help
-
-**Usage:** `!help`
-
+**Description:** The help command will list all available commands and their usage.</br>
+**Aliases:** !sambot, !sambot_help</br>
+**Usage:** `!help`</br>
 **Examples:** 
 - !help
 - !sambot
@@ -91,7 +88,7 @@ To specify the gameserver, you need to name the channels correctly. Every channe
 **Aliases:** !goto
 
 **Usage:** `!station_check <x-coordinate> <y-coordinate>`
-	
+
 **Examples:** 
 - !station_check -146 75
 - !goto -146 75
