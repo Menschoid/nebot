@@ -73,6 +73,17 @@ client.once('ready', () => {
 	console.log('Ready!');
 });
 
+client.on('ready', () => {
+	// set bot icon
+	client.user.setAvatar('./img/sam_logo.png')
+		.then(user => console.log(`New avatar set!`))
+		.catch(console.error);
+
+	//set bot activity
+	client.user.setActivity('chat', { type: 'WATCHING'})
+		.catch(console.error);
+});
+
 // Interpreting the message
 client.on('message', async message => {
 	if (!message.content.startsWith(prefix) || message.author.bot) return;

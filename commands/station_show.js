@@ -50,7 +50,7 @@ module.exports = {
 					if (args[0] === 'mine') {
 						header = `My stations on server ${server}: ${allStation.length}`;
 					}
-					let page = module.exports.createNewPage(Discord, pageCount, pageTotal, header);
+					let page = this.createNewPage(Discord, pageCount, pageTotal, header);
 
 					// set entry-counter for the page
 					let entryPage = 1;
