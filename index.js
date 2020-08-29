@@ -1,9 +1,6 @@
 // require filesystem fs
 const fs = require('fs');
 
-// require sequelize
-//const Sequelize = require('sequelize');
-
 // require the discord.js module
 const Discord = require('discord.js');
 
@@ -12,43 +9,6 @@ const { prefix, token } = require('./config.json');
 
 // create a new Discord client
 const client = new Discord.Client();
-
-// sqlite connection
-//const sequelize = new Sequelize('database', 'user', 'password', {
-//	host: 'localhost',
-//	dialect: 'sqlite',
-//	logging: false,
-//	// SQLite only
-//	storage: 'database.sqlite',
-//});
-
-// db model stations
-/*const Stations = sequelize.define('stations', {
-	coordinates: {
-		type: Sequelize.STRING,
-		unique: true,
-	},
-	name: {
-		type: Sequelize.STRING,
-		defaultValue: '',
-		allowNull: false,
-	},
-	role: {
-		type: Sequelize.STRING,
-		defaultValue: '',
-		allowNull: false,
-	},
-	description: {
-		type: Sequelize.TEXT,
-		defaultValue: '',
-		allowNull: false,
-	},
-	userid: Sequelize.BLOB,
-	username: Sequelize.STRING,
-	server: Sequelize.STRING,
-	dateCreated: Sequelize.DATE,
-	dateEdited: Sequelize.DATE,
-}); */
 
 const dbModels = require('./classes/dbModels.js');
 const Stations = dbModels.initStations();
@@ -81,6 +41,7 @@ client.on('ready', () => {
 
 	//set bot activity
 	client.user.setActivity('chat', { type: 'WATCHING'})
+		.then(user => console.log('New activity set!'))
 		.catch(console.error);
 });
 
